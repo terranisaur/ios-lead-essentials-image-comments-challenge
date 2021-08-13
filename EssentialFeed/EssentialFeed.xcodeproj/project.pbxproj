@@ -108,6 +108,7 @@
 		F8BA395B26C6FCA0006A20C1 /* ImageCommentsLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA395A26C6FCA0006A20C1 /* ImageCommentsLocalizationTests.swift */; };
 		F8BA396126C6FF33006A20C1 /* ImageComments.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8BA395E26C6FF2A006A20C1 /* ImageComments.strings */; };
 		F8BA396326C70297006A20C1 /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396226C70297006A20C1 /* ImageComment.swift */; };
+		F8BA396526C703C7006A20C1 /* ImageCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396426C703C7006A20C1 /* ImageCommentsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,7 @@
 		F8BA395F26C6FF2F006A20C1 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ImageComments.strings; sourceTree = "<group>"; };
 		F8BA396026C6FF31006A20C1 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ImageComments.strings"; sourceTree = "<group>"; };
 		F8BA396226C70297006A20C1 /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
+		F8BA396426C703C7006A20C1 /* ImageCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -780,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				F8BA395626C6FC58006A20C1 /* ImageCommentsPresenter.swift */,
+				F8BA396426C703C7006A20C1 /* ImageCommentsModel.swift */,
 				F8BA395E26C6FF2A006A20C1 /* ImageComments.strings */,
 			);
 			path = Presentation;
@@ -1049,6 +1052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8BA396326C70297006A20C1 /* ImageComment.swift in Sources */,
+				F8BA396526C703C7006A20C1 /* ImageCommentsModel.swift in Sources */,
 				08C4E986233E139400D939F8 /* LocalFeedImageDataLoader.swift in Sources */,
 				08285AFB228C17B8000A8987 /* CoreDataHelpers.swift in Sources */,
 				08C0880E21E4EF2900ACFB30 /* FeedItemsMapper.swift in Sources */,
