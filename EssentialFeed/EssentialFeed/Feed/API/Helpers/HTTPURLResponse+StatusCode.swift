@@ -10,4 +10,8 @@ extension HTTPURLResponse {
 	var isOK: Bool {
 		return statusCode == HTTPURLResponse.OK_200
 	}
+
+	var is200: Bool {
+		(200 ..< 300).contains(statusCode)
+	}
 }

@@ -10,7 +10,7 @@ public final class ImageCommentsMapper {
 	}
 
 	public static func map(_ data: Data, from response: HTTPURLResponse) throws -> Data {
-		guard response.isOK, !data.isEmpty else {
+		guard response.is200, !data.isEmpty else {
 			throw Error.invalidData
 		}
 
