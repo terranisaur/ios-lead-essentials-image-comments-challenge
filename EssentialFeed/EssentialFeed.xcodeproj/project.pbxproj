@@ -111,6 +111,9 @@
 		F8BA396526C703C7006A20C1 /* ImageCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396426C703C7006A20C1 /* ImageCommentsModel.swift */; };
 		F8BA396726C819D9006A20C1 /* ImageCommentsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396626C819D9006A20C1 /* ImageCommentsEndpointTests.swift */; };
 		F8BA396926C81A3F006A20C1 /* CommentsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396826C81A3F006A20C1 /* CommentsEndpoint.swift */; };
+		F8BA396B26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396A26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift */; };
+		F8BA396D26C81CE6006A20C1 /* ImageCommentCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA396C26C81CE6006A20C1 /* ImageCommentCellController.swift */; };
+		F8BA396F26C81D0F006A20C1 /* ImageComments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BA396E26C81D0F006A20C1 /* ImageComments.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +249,9 @@
 		F8BA396426C703C7006A20C1 /* ImageCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsModel.swift; sourceTree = "<group>"; };
 		F8BA396626C819D9006A20C1 /* ImageCommentsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsEndpointTests.swift; sourceTree = "<group>"; };
 		F8BA396826C81A3F006A20C1 /* CommentsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsEndpoint.swift; sourceTree = "<group>"; };
+		F8BA396A26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsSnapshotTests.swift; sourceTree = "<group>"; };
+		F8BA396C26C81CE6006A20C1 /* ImageCommentCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCellController.swift; sourceTree = "<group>"; };
+		F8BA396E26C81D0F006A20C1 /* ImageComments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageComments.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +351,7 @@
 		080D8BF3251E278E00602717 /* Image Comments UI */ = {
 			isa = PBXGroup;
 			children = (
+				F8BA396A26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift */,
 			);
 			path = "Image Comments UI";
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 		080D8C03251E28AE00602717 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F8BA396C26C81CE6006A20C1 /* ImageCommentCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 		080D8C12251E292F00602717 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8BA396E26C81D0F006A20C1 /* ImageComments.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -990,6 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0822D0F123056FEB004B3345 /* Feed.storyboard in Resources */,
+				F8BA396F26C81D0F006A20C1 /* ImageComments.storyboard in Resources */,
 				0822D0F3230570F3004B3345 /* Feed.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1146,6 +1156,7 @@
 				0865FA86252269B000416D62 /* UIView+Container.swift in Sources */,
 				08605B9F251E352F0011D4D3 /* CellController.swift in Sources */,
 				08B5EB5022CE328100FE8683 /* UIView+Shimmering.swift in Sources */,
+				F8BA396D26C81CE6006A20C1 /* ImageCommentCellController.swift in Sources */,
 				0822D0F523058078004B3345 /* UITableView+Dequeueing.swift in Sources */,
 				08BB7EAB22C1425100F8B83C /* ListViewController.swift in Sources */,
 				0822D0F7230581D2004B3345 /* UIImageView+Animations.swift in Sources */,
@@ -1158,6 +1169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8BA396B26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift in Sources */,
 				08BB7EA922C138AC00F8B83C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				080D8BD3251E261F00602717 /* ListSnapshotTests.swift in Sources */,
 				086AEFB923A7DFA400EE8933 /* FeedSnapshotTests.swift in Sources */,
