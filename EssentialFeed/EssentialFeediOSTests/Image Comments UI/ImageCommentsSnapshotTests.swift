@@ -16,6 +16,15 @@ class ImageCommentsSnapshotTests: XCTestCase {
 		assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_LOADING_dark")
 	}
 
+	func test_commentsFailedLoading() {
+		let sut = makeSUT()
+
+		sut.display(ResourceErrorViewModel(message: "a multiline\nerror message\nwith description"))
+
+		assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "COMMENTS_FAILED_LOADING_light")
+		assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_FAILED_LOADING_dark")
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT() -> ListViewController {
