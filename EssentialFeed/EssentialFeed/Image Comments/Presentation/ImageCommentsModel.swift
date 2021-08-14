@@ -5,5 +5,5 @@
 import Foundation
 
 public struct ImageCommentsModel {
-	let comments: [ImageComment]
+	public let comments: [ImageComment]
 }

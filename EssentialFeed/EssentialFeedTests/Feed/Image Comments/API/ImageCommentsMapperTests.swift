@@ -41,7 +41,7 @@ class ImageCommentsMapperTests: XCTestCase {
 	}
 
 	func test_map_deliversItemsOn2xxHTTPResponseWithJSONItems() throws {
-        let date = Date()
+		let date = Date()
 		let item1 = makeItem(id: UUID(),
 		                     message: "a comment",
 		                     creationTime: date,
@@ -62,8 +62,8 @@ class ImageCommentsMapperTests: XCTestCase {
 	// MARK: - Helpers
 
 	private func makeItem(id: UUID, message: String, creationTime: Date, authorName: String) -> (model: ImageComment, json: [String: Any]) {
-        let formatter = ISO8601DateFormatter()
-        let iso8601date = formatter.date(from: formatter.string(from: creationTime))!
+		let formatter = ISO8601DateFormatter()
+		let iso8601date = formatter.date(from: formatter.string(from: creationTime))!
 		let item = ImageComment(id: id, message: message, creationTime: iso8601date, authorName: authorName)
 
 		let json = [
