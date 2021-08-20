@@ -63,32 +63,33 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: [comment0, comment1])
 	}
 
-//	func test_loadFeedCompletion_rendersSuccessfullyLoadedEmptyFeedAfterNonEmptyFeed() {
-//		let image0 = makeImage()
-//		let image1 = makeImage()
-//		let (sut, loader) = makeSUT()
-//
-//		sut.loadViewIfNeeded()
-//		loader.completeFeedLoading(with: [image0, image1], at: 0)
-//		assertThat(sut, isRendering: [image0, image1])
-//
-//		sut.simulateUserInitiatedReload()
-//		loader.completeFeedLoading(with: [], at: 1)
-//		assertThat(sut, isRendering: [])
-//	}
-//
-//	func test_loadFeedCompletion_doesNotAlterCurrentRenderingStateOnError() {
-//		let image0 = makeImage()
-//		let (sut, loader) = makeSUT()
-//
-//		sut.loadViewIfNeeded()
-//		loader.completeFeedLoading(with: [image0], at: 0)
-//		assertThat(sut, isRendering: [image0])
-//
-//		sut.simulateUserInitiatedReload()
-//		loader.completeFeedLoadingWithError(at: 1)
-//		assertThat(sut, isRendering: [image0])
-//	}
+	func test_loadCompletion_rendersSuccessfullyLoadedEmptyCommentsAfterNonEmptyComments() {
+		let comment0 = makeComment(message: "a message", username: "a username")
+		let comment1 = makeComment(message: "another message", username: "another username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		loader.completeCommentsLoading(with: [comment0, comment1], at: 0)
+		assertThat(sut, isRendering: [comment0, comment1])
+
+		sut.simulateUserInitiatedReload()
+		loader.completeCommentsLoading(with: [], at: 1)
+		assertThat(sut, isRendering: [])
+	}
+
+	func test_loadFeedCompletion_doesNotAlterCurrentRenderingStateOnError() {
+		let comment0 = makeComment(message: "a message", username: "a username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		loader.completeCommentsLoading(with: [comment0], at: 0)
+		assertThat(sut, isRendering: [comment0])
+
+		sut.simulateUserInitiatedReload()
+		loader.completeCommentsLoadingWithError(at: 1)
+		assertThat(sut, isRendering: [comment0])
+	}
+
 //
 //	func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
 //		let (sut, loader) = makeSUT()
