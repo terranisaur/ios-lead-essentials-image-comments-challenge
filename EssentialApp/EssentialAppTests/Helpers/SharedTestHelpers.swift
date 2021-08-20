@@ -32,3 +32,7 @@ var loadError: String {
 var feedTitle: String {
 	FeedPresenter.title
 }
+
+func executeRunLoopToCleanUpReferences() {
+	RunLoop.current.run(until: Date())
+}

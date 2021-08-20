@@ -35,8 +35,4 @@ extension FeedUIIntegrationTests {
 
 		XCTAssertEqual(cell.descriptionText, image.description, "Expected description text to be \(String(describing: image.description)) for image view at index (\(index)", file: file, line: line)
 	}
-
-	private func executeRunLoopToCleanUpReferences() {
-		RunLoop.current.run(until: Date())
-	}
 }
