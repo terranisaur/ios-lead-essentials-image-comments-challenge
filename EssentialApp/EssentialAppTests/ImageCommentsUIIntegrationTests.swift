@@ -4,6 +4,7 @@
 
 import XCTest
 import UIKit
+import Combine
 import EssentialApp
 import EssentialFeed
 import EssentialFeediOS
@@ -128,28 +129,31 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertEqual(sut.errorMessage, nil)
 	}
 
-	//    func test_deinit_cancelsRunningRequest() {
-	//        var cancelCallCount = 0
-//
-	//        var sut: ListViewController?
-//
-	//        autoreleasepool {
-	//            sut = CommentsUIComposer.commentsComposedWith(commentsLoader: {
-	//                PassthroughSubject<[ImageComment], Error>()
-	//                    .handleEvents(receiveCancel: {
-	//                        cancelCallCount += 1
-	//                    }).eraseToAnyPublisher()
-	//            })
-//
-	//            sut?.loadViewIfNeeded()
-	//        }
-//
-	//        XCTAssertEqual(cancelCallCount, 0)
-//
-	//        sut = nil
-//
-	//        XCTAssertEqual(cancelCallCount, 1)
-	//    }
+	func test_deinit_cancelsRunningAPIRequests() {
+		var cancelCallCount = 0
+		var completionCallCount = 0
+
+		var sut: ListViewController?
+
+		autoreleasepool {
+			sut = CommentsUIComposer.composedWith {
+				PassthroughSubject<[ImageComment], Error>().handleEvents(receiveCompletion: { _ in
+					completionCallCount += 1
+				}, receiveCancel: {
+					cancelCallCount += 1
+				}).eraseToAnyPublisher()
+			}
+			sut?.loadViewIfNeeded()
+		}
+
+		XCTAssertEqual(cancelCallCount, 0)
+		XCTAssertEqual(completionCallCount, 0)
+
+		sut = nil
+
+		XCTAssertEqual(cancelCallCount, 1)
+		XCTAssertEqual(completionCallCount, 0)
+	}
 
 	// MARK: - Helpers
 
