@@ -20,7 +20,7 @@ class ImageCommentsMapperTests: XCTestCase {
 		let emptyData = Data()
 
 		XCTAssertThrowsError(
-			try ImageCommentsMapper.map(emptyData, from: HTTPURLResponse(statusCode: 200))
+			try ImageCommentsMapper.map(emptyData, from: successfulResponseWithNon200Code)
 		)
 	}
 
@@ -28,14 +28,14 @@ class ImageCommentsMapperTests: XCTestCase {
 		let invalidJSON = Data("invalid json".utf8)
 
 		XCTAssertThrowsError(
-			try ImageCommentsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+			try ImageCommentsMapper.map(invalidJSON, from: successfulResponseWithNon200Code)
 		)
 	}
 
 	func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() throws {
 		let emptyListJSON = makeItemsJSON([])
 
-		let result = try ImageCommentsMapper.map(emptyListJSON, from: HTTPURLResponse(statusCode: 200))
+		let result = try ImageCommentsMapper.map(emptyListJSON, from: successfulResponseWithNon200Code)
 
 		XCTAssertEqual(result, [])
 	}
@@ -54,7 +54,7 @@ class ImageCommentsMapperTests: XCTestCase {
 
 		let json = makeItemsJSON([item1.json, item2.json])
 
-		let result = try ImageCommentsMapper.map(json, from: HTTPURLResponse(statusCode: 200))
+		let result = try ImageCommentsMapper.map(json, from: successfulResponseWithNon200Code)
 
 		XCTAssertEqual(result, [item1.model, item2.model])
 	}
@@ -76,5 +76,9 @@ class ImageCommentsMapperTests: XCTestCase {
 		].compactMapValues { $0 }
 
 		return (item, json)
+	}
+
+	private var successfulResponseWithNon200Code: HTTPURLResponse {
+		HTTPURLResponse(statusCode: 201)
 	}
 }
