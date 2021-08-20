@@ -77,7 +77,7 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: [])
 	}
 
-	func test_loadFeedCompletion_doesNotAlterCurrentRenderingStateOnError() {
+	func test_loadCompletion_doesNotAlterCurrentRenderingStateOnError() {
 		let comment0 = makeComment(message: "a message", username: "a username")
 		let (sut, loader) = makeSUT()
 
@@ -90,19 +90,18 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: [comment0])
 	}
 
-//
-//	func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
-//		let (sut, loader) = makeSUT()
-//		sut.loadViewIfNeeded()
-//
-//		let exp = expectation(description: "Wait for background queue")
-//		DispatchQueue.global().async {
-//			loader.completeFeedLoading(at: 0)
-//			exp.fulfill()
-//		}
-//		wait(for: [exp], timeout: 1.0)
-//	}
-//
+	func test_loadCompletion_dispatchesFromBackgroundToMainThread() {
+		let (sut, loader) = makeSUT()
+		sut.loadViewIfNeeded()
+
+		let exp = expectation(description: "Wait for background queue")
+		DispatchQueue.global().async {
+			loader.completeCommentsLoading()
+			exp.fulfill()
+		}
+		wait(for: [exp], timeout: 1.0)
+	}
+
 //	func test_loadFeedCompletion_rendersErrorMessageOnErrorUntilNextReload() {
 //		let (sut, loader) = makeSUT()
 //
