@@ -8,19 +8,12 @@ import EssentialFeed
 public final class ImageCommentsCellController: NSObject {
 	public typealias ResourceViewModel = UIImage
 
-//	private let viewModel: ImageCommentsViewModel
-	private let viewModel: ImageComment
+	private let viewModel: ImageCommentViewModel
 	private var cell: ImageCommentCell?
 
-	public init(viewModel: ImageComment) {
+	public init(viewModel: ImageCommentViewModel) {
 		self.viewModel = viewModel
 	}
-
-	static let dateFormatter: DateFormatter = {
-		let f = DateFormatter()
-		f.dateStyle = .short
-		return f
-	}()
 }
 
 extension ImageCommentsCellController: UITableViewDataSource, UITableViewDelegate {
@@ -30,21 +23,9 @@ extension ImageCommentsCellController: UITableViewDataSource, UITableViewDelegat
 
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		cell = tableView.dequeueReusableCell()
-		cell?.headerLabel.text = viewModel.authorName
-		cell?.dateLabel.text = Self.dateFormatter.string(from: viewModel.creationTime)
+		cell?.headerLabel.text = viewModel.username
+		cell?.dateLabel.text = viewModel.date
 		cell?.bodyLabel.text = viewModel.message
 		return cell!
-	}
-
-	public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cancelLoad()
-	}
-
-	private func cancelLoad() {
-		releaseCellForReuse()
-	}
-
-	private func releaseCellForReuse() {
-		cell = nil
 	}
 }

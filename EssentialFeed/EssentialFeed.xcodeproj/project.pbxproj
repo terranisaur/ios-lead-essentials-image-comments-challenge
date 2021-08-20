@@ -367,8 +367,8 @@
 		080D8BF3251E278E00602717 /* Image Comments UI */ = {
 			isa = PBXGroup;
 			children = (
-				F8BA397026C82061006A20C1 /* snapshots */,
 				F8BA396A26C81C83006A20C1 /* ImageCommentsSnapshotTests.swift */,
+				F8BA397026C82061006A20C1 /* snapshots */,
 			);
 			path = "Image Comments UI";
 			sourceTree = "<group>";
