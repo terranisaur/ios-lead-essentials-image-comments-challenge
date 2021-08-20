@@ -52,18 +52,13 @@ class FeedAcceptanceTests: XCTestCase {
 	}
 
 	func test_selectFeedImage_showsComments() {
-		let sharedStore = InMemoryFeedStore.empty
-		let onlineFeed = launch(httpClient: .online(response), store: sharedStore)
+		let feed = launch(httpClient: .online(response), store: InMemoryFeedStore.empty)
 
-		onlineFeed.simulateTapOnFeedImage(at: 0)
-		RunLoop.current.run(until: Date())
-
-		let nav = onlineFeed.navigationController
-		let commentsVC = nav?.topViewController as! ListViewController
+		let commentsVC = tapFeedImageToShowComments(in: feed)
 
 		XCTAssertEqual(commentsVC.numberOfRenderedImageComments(), 1)
-		let commentCell = commentsVC.imageCommentView(at: 0)
-		XCTAssertEqual((commentCell as? ImageCommentCell)?.bodyLabel.text, makeCommentMessage())
+		let body = bodyLabel(from: commentsVC.imageCommentView(at: 0))
+		XCTAssertEqual(body.text, makeCommentMessage())
 	}
 
 	// MARK: - Helpers
@@ -132,5 +127,21 @@ class FeedAcceptanceTests: XCTestCase {
 
 	private func makeCommentMessage() -> String {
 		"a message"
+	}
+
+	private func tapFeedImageToShowComments(in feed: ListViewController, at index: Int = 0) -> ListViewController {
+		feed.simulateTapOnFeedImage(at: 0)
+		RunLoop.current.run(until: Date())
+
+		let nav = feed.navigationController
+		return nav?.topViewController as! ListViewController
+	}
+
+	private func bodyLabel(from commentsCell: UITableViewCell?, file: StaticString = #filePath, line: UInt = #line) -> UILabel {
+		guard let cell = commentsCell as? ImageCommentCell else {
+			XCTFail("Expected an ImageCommentCell, but got: \(String(describing: commentsCell))", file: file, line: line)
+			return UILabel()
+		}
+		return cell.bodyLabel
 	}
 }
