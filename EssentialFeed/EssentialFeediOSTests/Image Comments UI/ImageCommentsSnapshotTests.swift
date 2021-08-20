@@ -25,6 +25,16 @@ class ImageCommentsSnapshotTests: XCTestCase {
 		assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_FAILED_LOADING_dark")
 	}
 
+	func test_loadedComments() {
+		let sut = makeSUT()
+
+		sut.display(loadedComments().map { CellController(id: UUID(), $0) })
+
+		record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "COMMENTS_WITH_CONTENT_light")
+		record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_WITH_CONTENT_dark")
+		record(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge")
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT() -> ListViewController {
@@ -35,5 +45,9 @@ class ImageCommentsSnapshotTests: XCTestCase {
 		controller.tableView.showsVerticalScrollIndicator = false
 		controller.tableView.showsHorizontalScrollIndicator = false
 		return controller
+	}
+
+	func loadedComments() -> [ImageCommentsCellController] {
+		[ImageCommentsCellController(viewModel: ImageComment(id: UUID(), message: "a message", creationTime: Date(), authorName: "an author"))]
 	}
 }

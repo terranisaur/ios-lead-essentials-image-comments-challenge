@@ -13,7 +13,7 @@ public final class ImageCommentsPresenter {
 			comment: "Title for the image comments view")
 	}
 
-	public static func map(_ comments: [ImageComment]) -> ImageCommentsModel {
-		ImageCommentsModel(comments: comments)
+	public static func map(_ comments: [ImageComment]) -> ImageCommentsViewModel {
+		ImageCommentsViewModel(comments: comments)
 	}
 }
