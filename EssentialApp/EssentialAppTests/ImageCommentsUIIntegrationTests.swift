@@ -47,25 +47,22 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
 	}
 
-//
-//	func test_loadFeedCompletion_rendersSuccessfullyLoadedFeed() {
-//		let image0 = makeImage(description: "a description", location: "a location")
-//		let image1 = makeImage(description: nil, location: "another location")
-//		let image2 = makeImage(description: "another description", location: nil)
-//		let image3 = makeImage(description: nil, location: nil)
-//		let (sut, loader) = makeSUT()
-//
-//		sut.loadViewIfNeeded()
-//		assertThat(sut, isRendering: [])
-//
-//		loader.completeFeedLoading(with: [image0], at: 0)
-//		assertThat(sut, isRendering: [image0])
-//
-//		sut.simulateUserInitiatedReload()
-//		loader.completeFeedLoading(with: [image0, image1, image2, image3], at: 1)
-//		assertThat(sut, isRendering: [image0, image1, image2, image3])
-//	}
-//
+	func test_loadFeedCompletion_rendersSuccessfullyLoadedFeed() {
+		let comment0 = makeComment(message: "a message", username: "a username")
+		let comment1 = makeComment(message: "another message", username: "another username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		assertThat(sut, isRendering: [])
+
+		loader.completeCommentsLoading(with: [comment0], at: 0)
+		assertThat(sut, isRendering: [comment0])
+
+		sut.simulateUserInitiatedReload()
+		loader.completeCommentsLoading(with: [comment0, comment1], at: 1)
+		assertThat(sut, isRendering: [comment0, comment1])
+	}
+
 //	func test_loadFeedCompletion_rendersSuccessfullyLoadedEmptyFeedAfterNonEmptyFeed() {
 //		let image0 = makeImage()
 //		let image1 = makeImage()
@@ -340,5 +337,9 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		trackForMemoryLeaks(loader, file: file, line: line)
 		trackForMemoryLeaks(sut, file: file, line: line)
 		return (sut, loader)
+	}
+
+	private func makeComment(message: String, username: String) -> ImageComment {
+		ImageComment(id: UUID(), message: message, creationTime: Date(), authorName: username)
 	}
 }
