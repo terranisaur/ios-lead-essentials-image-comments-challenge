@@ -23,7 +23,6 @@ extension ImageCommentsUIIntegrationTests {
 
 		func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
 			commentsRequests[index].send(comments)
-			// requests[index].send(completion: .finished) ?
 		}
 
 		func completeCommentsLoadingWithError(at index: Int = 0) {
