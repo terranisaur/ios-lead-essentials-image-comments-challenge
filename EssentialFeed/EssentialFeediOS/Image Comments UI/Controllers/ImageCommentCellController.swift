@@ -9,7 +9,6 @@ public final class ImageCommentsCellController: NSObject {
 	public typealias ResourceViewModel = UIImage
 
 	private let viewModel: ImageCommentViewModel
-	private var cell: ImageCommentCell?
 
 	public init(viewModel: ImageCommentViewModel) {
 		self.viewModel = viewModel
@@ -22,10 +21,10 @@ extension ImageCommentsCellController: UITableViewDataSource, UITableViewDelegat
 	}
 
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		cell = tableView.dequeueReusableCell()
-		cell?.headerLabel.text = viewModel.username
-		cell?.dateLabel.text = viewModel.date
-		cell?.bodyLabel.text = viewModel.message
-		return cell!
+		let cell = tableView.dequeueReusableCell() as ImageCommentCell
+		cell.headerLabel.text = viewModel.username
+		cell.dateLabel.text = viewModel.date
+		cell.bodyLabel.text = viewModel.message
+		return cell
 	}
 }
