@@ -39,3 +39,9 @@ public final class ImageCommentsMapper {
 		return root.comments
 	}
 }
+
+extension HTTPURLResponse {
+	var is2xx: Bool {
+		(200 ..< 300).contains(statusCode)
+	}
+}
