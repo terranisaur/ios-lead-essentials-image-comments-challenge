@@ -16,28 +16,34 @@ class ImageCommentsMapperTests: XCTestCase {
 		}
 	}
 
-	func test_map_deliversInvalidDataErrorOn2xxHTTPResponseWithEmptyData() {
+	func test_map_deliversInvalidDataErrorOn2xxHTTPResponseWithEmptyData() throws {
 		let emptyData = Data()
 
-		XCTAssertThrowsError(
-			try ImageCommentsMapper.map(emptyData, from: successfulResponseWithNon200Code)
-		)
+		try successCodes.forEach { code in
+			XCTAssertThrowsError(
+				try ImageCommentsMapper.map(emptyData, from: code)
+			)
+		}
 	}
 
-	func test_map_throwsErrorOn2xxHTTPResponseWithInvalidJSON() {
+	func test_map_throwsErrorOn2xxHTTPResponseWithInvalidJSON() throws {
 		let invalidJSON = Data("invalid json".utf8)
 
-		XCTAssertThrowsError(
-			try ImageCommentsMapper.map(invalidJSON, from: successfulResponseWithNon200Code)
-		)
+		try successCodes.forEach { code in
+			XCTAssertThrowsError(
+				try ImageCommentsMapper.map(invalidJSON, from: code)
+			)
+		}
 	}
 
 	func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() throws {
 		let emptyListJSON = makeItemsJSON([])
 
-		let result = try ImageCommentsMapper.map(emptyListJSON, from: successfulResponseWithNon200Code)
+		try successCodes.forEach { code in
+			let result = try ImageCommentsMapper.map(emptyListJSON, from: code)
 
-		XCTAssertEqual(result, [])
+			XCTAssertEqual(result, [])
+		}
 	}
 
 	func test_map_deliversItemsOn2xxHTTPResponseWithJSONItems() throws {
@@ -53,9 +59,11 @@ class ImageCommentsMapperTests: XCTestCase {
 
 		let json = makeItemsJSON([item1.json, item2.json])
 
-		let result = try ImageCommentsMapper.map(json, from: successfulResponseWithNon200Code)
+		try successCodes.forEach { code in
+			let result = try ImageCommentsMapper.map(json, from: code)
 
-		XCTAssertEqual(result, [item1.model, item2.model])
+			XCTAssertEqual(result, [item1.model, item2.model])
+		}
 	}
 
 	// MARK: - Helpers
@@ -74,7 +82,7 @@ class ImageCommentsMapperTests: XCTestCase {
 		return (item, json)
 	}
 
-	private var successfulResponseWithNon200Code: HTTPURLResponse {
-		HTTPURLResponse(statusCode: 201)
+	private var successCodes: [HTTPURLResponse] {
+		[HTTPURLResponse(statusCode: 200), HTTPURLResponse(statusCode: 201), HTTPURLResponse(statusCode: 299)]
 	}
 }
