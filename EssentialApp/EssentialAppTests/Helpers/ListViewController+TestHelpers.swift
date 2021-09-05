@@ -97,14 +97,21 @@ extension ListViewController {
 		numberOfRows(in: imageCommentsSection)
 	}
 
-	func imageCommentView(at row: Int) -> UITableViewCell? {
-		cell(row: row, section: imageCommentsSection)
+	private func imageCommentView(at row: Int) -> ImageCommentCell? {
+		cell(row: row, section: imageCommentsSection) as? ImageCommentCell
 	}
 
+    private var imageCommentsSection: Int { 0 }
+    
+    func commentUsername(at row: Int) -> String? {
+        return imageCommentView(at: row)?.headerLabel.text
+    }
+    
+    func commentDate(at row: Int) -> String? {
+        return imageCommentView(at: row)?.dateLabel.text
+    }
+    
 	func commentMessage(at row: Int) -> String? {
-		let commentsCell = cell(row: row, section: imageCommentsSection) as! ImageCommentCell
-		return commentsCell.bodyLabel.text
+		return imageCommentView(at: row)?.bodyLabel.text
 	}
-
-	private var imageCommentsSection: Int { 0 }
 }

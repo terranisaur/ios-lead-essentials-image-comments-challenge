@@ -22,18 +22,10 @@ extension ImageCommentsUIIntegrationTests {
 	}
 
 	func assertThat(_ sut: ListViewController, hasViewConfiguredFor comment: ImageComment, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
-		let view = sut.imageCommentView(at: index)
-
-		guard let cell = view as? ImageCommentCell else {
-			return XCTFail("Expected \(ImageCommentCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
-		}
-
 		let viewModel = ImageCommentsPresenter.map([comment]).comments.first!
 
-		XCTAssertEqual(cell.headerLabel.text, viewModel.username, "Expected username text to be \(String(describing: viewModel.username)) for image  view at index (\(index))", file: file, line: line)
-
-		XCTAssertEqual(cell.dateLabel.text, viewModel.date, "Expected username text to be \(String(describing: viewModel.date)) for image  view at index (\(index))", file: file, line: line)
-
-		XCTAssertEqual(cell.bodyLabel.text, viewModel.message, "Expected body text to be \(String(describing: viewModel.message)) for image  view at index (\(index))", file: file, line: line)
+		XCTAssertEqual(sut.commentUsername(at: index), viewModel.username, "username at index \(index)", file: file, line: line)
+		XCTAssertEqual(sut.commentDate(at: index), viewModel.date, "date at index \(index)", file: file, line: line)
+		XCTAssertEqual(sut.commentMessage(at: index), viewModel.message, "message at index \(index)", file: file, line: line)
 	}
 }
