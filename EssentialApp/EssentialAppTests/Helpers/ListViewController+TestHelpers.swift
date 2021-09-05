@@ -101,5 +101,10 @@ extension ListViewController {
 		cell(row: row, section: imageCommentsSection)
 	}
 
+	func commentMessage(at row: Int) -> String? {
+		let commentsCell = cell(row: row, section: imageCommentsSection) as! ImageCommentCell
+		return commentsCell.bodyLabel.text
+	}
+
 	private var imageCommentsSection: Int { 0 }
 }

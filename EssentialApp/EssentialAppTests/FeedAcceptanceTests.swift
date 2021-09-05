@@ -57,8 +57,7 @@ class FeedAcceptanceTests: XCTestCase {
 		let commentsVC = selectFeedImageToShowComments(in: feed)
 
 		XCTAssertEqual(commentsVC.numberOfRenderedImageComments(), 1)
-		let body = bodyLabel(from: commentsVC.imageCommentView(at: 0))
-		XCTAssertEqual(body.text, makeCommentMessage())
+		XCTAssertEqual(commentsVC.commentMessage(at: 0), makeCommentMessage())
 	}
 
 	// MARK: - Helpers
@@ -135,13 +134,5 @@ class FeedAcceptanceTests: XCTestCase {
 
 		let nav = feed.navigationController
 		return nav?.topViewController as! ListViewController
-	}
-
-	private func bodyLabel(from commentsCell: UITableViewCell?, file: StaticString = #filePath, line: UInt = #line) -> UILabel {
-		guard let cell = commentsCell as? ImageCommentCell else {
-			XCTFail("Expected an ImageCommentCell, but got: \(String(describing: commentsCell))", file: file, line: line)
-			return UILabel()
-		}
-		return cell.bodyLabel
 	}
 }
