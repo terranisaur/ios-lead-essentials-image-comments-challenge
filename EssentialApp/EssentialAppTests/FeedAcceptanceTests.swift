@@ -54,7 +54,7 @@ class FeedAcceptanceTests: XCTestCase {
 	func test_selectFeedImage_showsComments() {
 		let feed = launch(httpClient: .online(response), store: InMemoryFeedStore.empty)
 
-		let commentsVC = tapFeedImageToShowComments(in: feed)
+		let commentsVC = selectFeedImageToShowComments(in: feed)
 
 		XCTAssertEqual(commentsVC.numberOfRenderedImageComments(), 1)
 		let body = bodyLabel(from: commentsVC.imageCommentView(at: 0))
@@ -129,7 +129,7 @@ class FeedAcceptanceTests: XCTestCase {
 		"a message"
 	}
 
-	private func tapFeedImageToShowComments(in feed: ListViewController, at index: Int = 0) -> ListViewController {
+	private func selectFeedImageToShowComments(in feed: ListViewController, at index: Int = 0) -> ListViewController {
 		feed.simulateTapOnFeedImage(at: 0)
 		RunLoop.current.run(until: Date())
 
