@@ -83,6 +83,6 @@ class ImageCommentsMapperTests: XCTestCase {
 	}
 
 	private var successfulResponses: [HTTPURLResponse] {
-        [200, 201, 299].map(HTTPURLResponse.init)
+		[200, 201, 299].map(HTTPURLResponse.init)
 	}
 }
