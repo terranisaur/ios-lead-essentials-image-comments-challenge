@@ -19,7 +19,7 @@ class ImageCommentsMapperTests: XCTestCase {
 	func test_map_deliversInvalidDataErrorOn2xxHTTPResponseWithEmptyData() throws {
 		let emptyData = Data()
 
-		try successCodes.forEach { code in
+		try successfulResponses.forEach { code in
 			XCTAssertThrowsError(
 				try ImageCommentsMapper.map(emptyData, from: code)
 			)
@@ -29,7 +29,7 @@ class ImageCommentsMapperTests: XCTestCase {
 	func test_map_throwsErrorOn2xxHTTPResponseWithInvalidJSON() throws {
 		let invalidJSON = Data("invalid json".utf8)
 
-		try successCodes.forEach { code in
+		try successfulResponses.forEach { code in
 			XCTAssertThrowsError(
 				try ImageCommentsMapper.map(invalidJSON, from: code)
 			)
@@ -39,7 +39,7 @@ class ImageCommentsMapperTests: XCTestCase {
 	func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() throws {
 		let emptyListJSON = makeItemsJSON([])
 
-		try successCodes.forEach { code in
+		try successfulResponses.forEach { code in
 			let result = try ImageCommentsMapper.map(emptyListJSON, from: code)
 
 			XCTAssertEqual(result, [])
@@ -59,7 +59,7 @@ class ImageCommentsMapperTests: XCTestCase {
 
 		let json = makeItemsJSON([item1.json, item2.json])
 
-		try successCodes.forEach { code in
+		try successfulResponses.forEach { code in
 			let result = try ImageCommentsMapper.map(json, from: code)
 
 			XCTAssertEqual(result, [item1.model, item2.model])
@@ -82,7 +82,7 @@ class ImageCommentsMapperTests: XCTestCase {
 		return (item, json)
 	}
 
-	private var successCodes: [HTTPURLResponse] {
+	private var successfulResponses: [HTTPURLResponse] {
 		[HTTPURLResponse(statusCode: 200), HTTPURLResponse(statusCode: 201), HTTPURLResponse(statusCode: 299)]
 	}
 }
