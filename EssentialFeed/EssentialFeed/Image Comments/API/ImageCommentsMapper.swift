@@ -40,7 +40,7 @@ public final class ImageCommentsMapper {
 	}
 }
 
-extension HTTPURLResponse {
+private extension HTTPURLResponse {
 	var is2xx: Bool {
 		(200 ..< 300).contains(statusCode)
 	}
